@@ -22,6 +22,9 @@ https://www.django-rest-framework.org/tutorial/1-serialization/
     4. This works with multiple instances too: `serializer = SnippetSerializer(Snippet.objects.all(), many=True)`
 3. Moving to **ModelSerializer** - just like Form has ModelForm, Serializer has ModelSerializer = code is more concise
    1. We can print the actual code of model serializer: `print(repr(SnippetSerializer()))`
-4. b
+4. Writing regular Django views using our Serializer
 5. c
-6. d
+6. dfrom django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from snippets.models import Snippet
