@@ -47,16 +47,34 @@ http http://127.0.0.1:8000/snippets/
 1. **Part 3**
     1. Mixins replace most of the basic verbose functionality. See each `views.py` file
 
-**Part 4**
+## Part 4
 
 - Code snippets are always associated with a creator.
 - Only authenticated users may create snippets.
 - Only the creator of a snippet may update or delete it.
 - Unauthenticated requests should have full read-only access.
 
-Associating Snippets with Users - override in SnippetListView:
+### Associating Snippets with Users - override in SnippetListView:
 
 ```python
  def perform_create(self, serializer):
     serializer.save(owner=self.request.user)
 ```
+
+### Also nice to notice - adding list of ids from snippets that user has created. These are the FK's in snippets table,
+
+representing ID of user.
+
+```python
+# User serializer
+snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+```
+
+### Adding readonly key for snippet GET requests - the owner field
+
+This field will be only used when GETting data, it will be omitted on PUT.
+
+```python
+owner = serializers.ReadOnlyField(source='owner.username')
+```
+Alternative: `CharField(read_only=True)`
