@@ -41,11 +41,11 @@ http http://127.0.0.1:8000/snippets/
     1. Use constants for http status codes rather than numeric values!
 2. Rewrite views to use mixins and Request response classes.
 3. Add `format_suffix_patterns`
-   1. this helps with specifying whether we want response in json or browsable api format (html)
+    1. this helps with specifying whether we want response in json or browsable api format (html)
 
-   
+
 1. **Part 3**
-   1. Mixins replace most of the basic verbose functionality. See each `views.py` file
+    1. Mixins replace most of the basic verbose functionality. See each `views.py` file
 
 **Part 4**
 
@@ -54,3 +54,9 @@ http http://127.0.0.1:8000/snippets/
 - Only the creator of a snippet may update or delete it.
 - Unauthenticated requests should have full read-only access.
 
+Associating Snippets with Users - override in SnippetListView:
+
+```python
+ def perform_create(self, serializer):
+    serializer.save(owner=self.request.user)
+```
