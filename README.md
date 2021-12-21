@@ -2,6 +2,17 @@
 
 https://www.django-rest-framework.org/tutorial/1-serialization/
 
+# Useful
+
+Curl alternative
+
+```bash
+pip install httpie
+http http://127.0.0.1:8000/snippets/
+```
+
+# Progress
+
 1. Initial setup
 2. Created serializers.py - way to serialize/deserialize instances.
     1. `serializers.Serializer` - manually defining properties, later we can use `ModelSerializer`
@@ -21,10 +32,11 @@ https://www.django-rest-framework.org/tutorial/1-serialization/
    ```
     4. This works with multiple instances too: `serializer = SnippetSerializer(Snippet.objects.all(), many=True)`
 3. Moving to **ModelSerializer** - just like Form has ModelForm, Serializer has ModelSerializer = code is more concise
-   1. We can print the actual code of model serializer: `print(repr(SnippetSerializer()))`
+    1. We can print the actual code of model serializer: `print(repr(SnippetSerializer()))`
 4. Writing regular Django views using our Serializer
-5. c
-6. dfrom django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
-from snippets.models import Snippet
+
+
+1. **Part 2** - Introduction to `Request` and `Response` classes. `Response` renders content based on requested
+   content-type.
+    1. Use constants for http status codes rather than numeric values!
+2. Rewrite views to use mixins and Request response classes.
