@@ -40,3 +40,5 @@ http http://127.0.0.1:8000/snippets/
    content-type.
     1. Use constants for http status codes rather than numeric values!
 2. Rewrite views to use mixins and Request response classes.
+3. Add `format_suffix_patterns`
+   1. this helps with specifying whether we want response in json or browsable api format (html)
