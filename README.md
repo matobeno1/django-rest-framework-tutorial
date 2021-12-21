@@ -78,3 +78,16 @@ This field will be only used when GETting data, it will be omitted on PUT.
 owner = serializers.ReadOnlyField(source='owner.username')
 ```
 Alternative: `CharField(read_only=True)`
+
+### Permissions
+- `permission_classes = [permissions.IsAuthenticatedOrReadOnly]` - will ensure that authenticated requests 
+get read-write access, and unauthenticated requests get read-only access (still will display data).
+
+### Adding login to the Browsable API
+```python
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls')),
+]
+```
+
+
