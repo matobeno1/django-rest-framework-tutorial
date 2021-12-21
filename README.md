@@ -45,4 +45,12 @@ http http://127.0.0.1:8000/snippets/
 
    
 1. **Part 3**
-2. 
+   1. Mixins replace most of the basic verbose functionality. See each `views.py` file
+
+**Part 4**
+
+- Code snippets are always associated with a creator.
+- Only authenticated users may create snippets.
+- Only the creator of a snippet may update or delete it.
+- Unauthenticated requests should have full read-only access.
+
